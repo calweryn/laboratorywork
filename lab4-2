@@ -1,0 +1,28 @@
+using System;
+
+namespace Lab2
+{
+    class Program
+    {
+        public static int MaxIndex(double[] array)
+        {
+            if (!array.Any())
+                return -1;
+            return Array.IndexOf(array, array.Max());
+        }
+
+        public static void Main(string[] args)
+        {
+            double[] array = new double[5];
+            Random rand = new Random();
+
+            for (int x = 0; x < array.Length; x++)
+            {
+                array[x] = rand.Next(20);
+                Console.WriteLine("Значение элемента массива " + x + " = " + array[x]);
+            }
+
+            Console.WriteLine("Индекс максимума = {0}", MaxIndex(array));
+        }
+    }
+}
