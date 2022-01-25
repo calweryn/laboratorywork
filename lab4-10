@@ -1,0 +1,36 @@
+using System;
+
+namespace Names
+{
+    internal static class HeatmapTask
+    {
+        public static HeatmapData GetBirthsPerDateHeatmap(NameData[] names)
+        {
+            double[,] mounthDay  = new double[30, 12];
+            foreach (var mname in names)
+                if (mname.BirthDate.Day !=1)
+                    mounthDay[mname.BirthDate.Day-2, mname.BirthDate.Month-1]++;
+            return new HeatmapData("Тепловая карта", mounthDay, Day(names), Month(names));            
+        }
+
+        public static string[] Day(NameData[] names)
+        {
+            var number = new string[30];
+            for (int i = 0; i<30; i++)
+            {
+                number[i] = (i+2).ToString();
+            }
+            return number;
+        }
+
+        public static string[] Month(NameData[] names)
+        {
+            var monthnum = new string[12];
+            for (int i = 0; i<12; i++)
+            {
+                monthnum[i] = (i+1).ToString();   
+            }     
+            return monthnum;
+        }
+    }
+}
