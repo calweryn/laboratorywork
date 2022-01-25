@@ -1,0 +1,31 @@
+using System;
+using System.Linq;
+
+namespace Names
+{
+    internal static class HistogramTask
+    {
+        public static HistogramData GetBirthsPerDayHistogram(NameData[] names, string name)
+        {
+            Console.WriteLine("Статистика рождаемости по именам");
+
+            var date = new string[31];
+            double[] bdate = new double[31];
+
+            foreach (var x in names)
+            {
+                if (x.Name == name & x.BirthDate.Day != 1)
+                {
+                    bdate[x.BirthDate.Day - 1]++;
+                }
+            }
+           
+            for (var i = 0; i < date.Length; i++)
+            {
+                date[i] = (i + 1).ToString();
+            }
+
+            return new HistogramData("Рождаемость людей с именем '" + name +"'", date, bdate);       
+        }
+    }
+}
